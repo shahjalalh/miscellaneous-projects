@@ -2,4 +2,4 @@
 
 
 ## Projects:
-1. Drum Kit Starting Files (JS)
+1. Drum Kit (JS)

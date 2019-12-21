@@ -1,29 +1,10 @@
-document.querySelector(".w").addEventListener("click", function() {
-    alert("w clicked");
-});
+var numberOfDrumButtons = document.querySelectorAll(".drum").length;
+var allSounds = ["w", "a", "s", "d", "j", "k", "l"]
 
-document.querySelector(".a").addEventListener("click", function() {
-    alert("a clicked");
-});
-
-document.querySelector(".s").addEventListener("click", function() {
-    alert("s clicked");
-});
-
-document.querySelector(".d").addEventListener("click", function() {
-    alert("d clicked");
-});
-
-document.querySelector(".j").addEventListener("click", function() {
-    alert("j clicked");
-});
-
-document.querySelector(".k").addEventListener("click", function() {
-    alert("k clicked");
-});
-
-document.querySelector(".l").addEventListener("click", function() {
-    alert("l clicked");
-});
+for(var i=0; i < numberOfDrumButtons; i++){
+    document.querySelectorAll(".drum")[i].addEventListener("click", function() {
+        alert(allSounds[i]+" clicked");
+    });
+}
 
 

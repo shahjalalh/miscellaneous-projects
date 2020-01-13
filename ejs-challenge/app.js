@@ -19,12 +19,25 @@ app.get("/", function(req, res){
   res.render("home", {homeStartingContent: homeStartingContent});
 });
 
+app.get("/about", function(req, res){
+  res.render("about", {aboutContent: aboutContent});
+});
 
+app.get("/contact", function(req, res){
+  res.render("contact", {contactContent: contactContent});
+});
 
+app.get("/compose", function(req, res){
+  res.render("compose");
+});
 
+app.post("/compose", function(req, res){
+  let title = req.body.postTitle;
+  let post = req.body.post
 
+  console.log(title, post);
 
-
+});
 
 
 

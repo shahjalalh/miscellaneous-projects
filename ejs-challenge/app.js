@@ -15,8 +15,10 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+let posts = [];
+
 app.get("/", function(req, res){
-  res.render("home", {homeStartingContent: homeStartingContent});
+  res.render("home", {homeStartingContent: homeStartingContent, posts: posts});
 });
 
 app.get("/about", function(req, res){
@@ -40,12 +42,21 @@ app.post("/compose", function(req, res){
     body: postBody
   };
 
-  console.log(post);
+  posts.push(post);
+  res.redirect("/");
 
 });
 
 
+app.get("/posts/:postName", function(req, res){
 
+  posts.forEach(function(post){
+    if(post.title == req.params.postName){
+      console.log("Match Found!");
+    }
+  });
+  // console.log(req.params.postName)
+});
 
 
 app.listen(3000, function() {

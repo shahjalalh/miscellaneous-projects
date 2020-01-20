@@ -37,6 +37,7 @@ const item3 = new Item({
 
 const defaultItems = [item1, item2, item3];
 
+/*
 Item.insertMany(defaultItems, function(error, docs){
   if(error){
     console.log(error);
@@ -45,13 +46,14 @@ Item.insertMany(defaultItems, function(error, docs){
     console.log(docs);
   }
 });
-
+*/
 app.get("/", function(req, res) {
 
   //const day = date.getDate();
 
-  res.render("list", {listTitle: "Today", newListItems: items});
-
+  let items2 = Item.find({}, function(error, foundItems){
+    res.render("list", {listTitle: "Today", newListItems: foundItems});
+  });
 });
 
 app.post("/", function(req, res){

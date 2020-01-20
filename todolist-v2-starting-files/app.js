@@ -51,8 +51,22 @@ app.get("/", function(req, res) {
 
   //const day = date.getDate();
 
-  let items2 = Item.find({}, function(error, foundItems){
-    res.render("list", {listTitle: "Today", newListItems: foundItems});
+  Item.find({}, function(error, foundItems){
+
+    if(foundItems.length === 0){
+      Item.insertMany(defaultItems, function(error, docs){
+        if(error){
+          console.log(error);
+        }else{
+          console.log("Successfully saved default items to database");
+          
+        }
+      });
+
+      res.redirect("/");
+    }else{
+      res.render("list", {listTitle: "Today", newListItems: foundItems});
+    }
   });
 });
 

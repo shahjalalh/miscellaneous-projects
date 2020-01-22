@@ -93,8 +93,44 @@ app.post("/", function(req, res){
   */
 });
 
+app.post("/delete", function(req, res){
+  // console.log(req.body);
+  // console.log(req.body.checkbox);
+
+  const checkedItemId = req.body.checkbox;
+
+  /*
+  Item.deleteOne({_id: checkedItemId}, function(error){
+    if(error){
+      console.log(error);
+    }else{
+      console.log("Successfully deleted one item!");
+      res.redirect("/");
+    }
+  });
+  */
+  // or,
+  // reference: https://mongoosejs.com/docs/api.html
+  Item.findByIdAndRemove(checkedItemId, function(error){
+    if(error){
+      console.log(error);
+    }else{
+      console.log("Successfully deleted one item!");
+      res.redirect("/");
+    }
+  });
+
+  
+});
+
+/*
 app.get("/work", function(req,res){
   res.render("list", {listTitle: "Work List", newListItems: workItems});
+});
+*/
+
+app.get("/:location", function(req, res){
+  req.params.location;
 });
 
 app.get("/about", function(req, res){

@@ -58,6 +58,19 @@ app.route("/articles")
     
     });
 
+app.route('articles/:articleTitle')
+    .get(function(req, res){
+        const articleTitle = req.params.articleTitle;
+
+        Article.findOne({title: articleTitle}, function(err, foundArticle){
+            if(foundArticle){
+                res.send(foundArticle);
+            }else{
+                res.send("No articles matching that title was found.");
+            }
+        });
+    });
+
 /*
 app.get("/articles", function(req, res){
     Article.find({}, function(err, foundArticles){

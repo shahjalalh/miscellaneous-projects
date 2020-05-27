@@ -9,7 +9,7 @@ class PostList extends React.Component {
     }
 
     renderList() {
-        return this.props.posts.map(post => {
+        return this.props.posts_all.map(post => {
             return (
                 <div className='item' key={post.id}>
                     <i className='large middle aligned icon user' />
@@ -35,7 +35,7 @@ class PostList extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { posts: state.posts };
+    return { posts_all: state.posts };
 };
 
 export default connect(

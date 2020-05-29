@@ -20,8 +20,9 @@ class StreamList extends React.Component {
                 <h2>Streams</h2>
                 <div className="ui called list">
                     <h3>lists...</h3>
-                    {this.renderCreate()}
+                    
                 </div>
+                {this.renderCreate()}
             </div>
         );
     }

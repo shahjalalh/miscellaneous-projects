@@ -40,3 +40,30 @@ Password: admin1234
 ```
 $ create-react-app movie-rater-web
 ```
+
+
+CORS https://github.com/adamchainz/django-cors-headers
+```
+$ pip install django-cors-headers
+$ 
+```
+
+INSTALLED_APPS = [
+    ...
+    'corsheaders',
+    ...
+]
+
+MIDDLEWARE = [  # Or MIDDLEWARE_CLASSES on Django < 1.10
+    ...
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    ...
+]
+
+CORS_ORIGIN_WHITELIST = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:9000"
+]

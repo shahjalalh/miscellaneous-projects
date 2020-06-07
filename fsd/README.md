@@ -1,4 +1,5 @@
 
+## Django
 
 Installing required frameworks:
 ```
@@ -32,4 +33,10 @@ Credentials
 Username: admin
 Email: shahjalal.tipu@gmail.com
 Password: admin1234 
+```
+
+## ReactJS
+
+```
+$ create-react-app movie-rater-web
 ```

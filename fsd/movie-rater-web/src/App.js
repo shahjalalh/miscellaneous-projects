@@ -51,7 +51,7 @@ class App extends Component {
     this.setState({editedMovie: null});
   }
 
-  addMovie = () => {
+  addMovie = (movie) => {
     this.setState({movies: [...this.state.movies, movie]})
   }
 
@@ -63,7 +63,7 @@ class App extends Component {
           <span>Movie Rater</span>
         </h1>
         <div className="logout">
-          <MovieList movies={this.state.movies} movieClicked={this.loadMovie} token={this.setState.token} movieDeleted={TouchList.movieDeleted} editClicked={TouchLists.editClicked} newMovie={this.newMovie}/>
+          <MovieList movies={this.state.movies} movieClicked={this.loadMovie} token={this.setState.token} movieDeleted={this.movieDeleted} editClicked={this.editClicked} newMovie={this.newMovie}/>
           
           <div>
             {

@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audio_cache.dart';
 
-void main() {
-  runApp(XylophoneApp());
-}
+void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
   void playSound(int soundNumber) {
     final player = AudioCache();
     player.play('note$soundNumber.wav');
+  }
+
+  Expanded buildKey({int soundNumber, Color color}) {
+    return Expanded(
+      child: FlatButton(
+        onPressed: () {
+          this.playSound(soundNumber);
+        },
+        color: color,
+      ),
+    );
   }
 
   @override
@@ -17,65 +26,15 @@ class XylophoneApp extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    this.playSound(1);
-                  },
-                  color: Colors.red,
-                ),
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    this.playSound(2);
-                    final player = AudioCache();
-                    player.play('note2.wav');
-                  },
-                  color: Colors.orange,
-                ),
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    this.playSound(3);
-                  },
-                  color: Colors.yellow,
-                ),
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    this.playSound(4);
-                  },
-                  color: Colors.green,
-                ),
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    this.playSound(5);
-                  },
-                  color: Colors.teal,
-                ),
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    this.playSound(6);
-                  },
-                  color: Colors.blue,
-                ),
-              ),
-              Container(
-                child: FlatButton(
-                  onPressed: () {
-                    this.playSound(7);
-                  },
-                  color: Colors.purple,
-                ),
-              ),
+              this.buildKey(soundNumber: 1, color: Colors.red),
+              this.buildKey(soundNumber: 2, color: Colors.orange),
+              this.buildKey(soundNumber: 3, color: Colors.yellow),
+              this.buildKey(soundNumber: 4, color: Colors.green),
+              this.buildKey(soundNumber: 5, color: Colors.teal),
+              this.buildKey(soundNumber: 6, color: Colors.blue),
+              this.buildKey(soundNumber: 7, color: Colors.purple),
             ],
           ),
         ),

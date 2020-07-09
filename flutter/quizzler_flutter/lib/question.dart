@@ -3,7 +3,7 @@ class Question {
   bool questionAnswer;
 
   Question({String q, bool a}) {
-    questionText = q;
-    questionAnswer = a;
+    this.questionText = q;
+    this.questionAnswer = a;
   }
 }

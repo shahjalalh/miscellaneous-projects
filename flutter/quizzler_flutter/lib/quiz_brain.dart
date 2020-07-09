@@ -34,25 +34,22 @@ class QuizBrain {
   ];
 
   void nextQuestion() {
-    if (_questionNumber < _questionBank.length - 1) {
-      _questionNumber++;
+    if (this._questionNumber < this._questionBank.length - 1) {
+      this._questionNumber++;
     }
   }
 
   String getQuestionText() {
-    return _questionBank[_questionNumber].questionText;
+    return this._questionBank[this._questionNumber].questionText;
   }
 
   bool getCorrectAnswer() {
-    return _questionBank[_questionNumber].questionAnswer;
+    return this._questionBank[this._questionNumber].questionAnswer;
   }
 
-  //TODO: Step 3 Part A - Create a method called isFinished() here that checks to see if we have reached the last question. It should return (have an output) true if we've reached the last question and it should return false if we're not there yet.
-
-  //TODO: Step 3 Part B - Use a print statement to check that isFinished is returning true when you are indeed at the end of the quiz and when a restart should happen.
   bool isFinished() {
     bool isFinished = true;
-    if (_questionNumber == _questionBank.length - 1) {
+    if (this._questionNumber == this._questionBank.length - 1) {
       isFinished = true;
     } else {
       isFinished = false;
@@ -63,8 +60,7 @@ class QuizBrain {
     return isFinished;
   }
 
-  //TODO: Step 4 Part B - Create a reset() method here that sets the questionNumber back to 0.
   void reset() {
-    _questionNumber = 0;
+    this._questionNumber = 0;
   }
 }

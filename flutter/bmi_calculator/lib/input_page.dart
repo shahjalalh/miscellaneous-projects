@@ -8,37 +8,41 @@ const activeCardColor = Color(0xFF1D1E33);
 const inactiveCardColor = Color(0xFF111328);
 const bottomContainerColor = Color(0xFFEB1555);
 
+enum Gender { male, female }
+
 class InputPage extends StatefulWidget {
   @override
   _InputPageState createState() => _InputPageState();
 }
 
 class _InputPageState extends State<InputPage> {
-  Color maleCardColour = inactiveCardColor;
-  Color femaleCardColour = inactiveCardColor;
+//  Color maleCardColour = inactiveCardColor;
+//  Color femaleCardColour = inactiveCardColor;
+
+  Gender selectedGender = Gender.male;
 
   // 1 = male, 2 = female
-  void updateColour(int gender) {
-    //male card pressed
-    if (gender == 1) {
-      if (maleCardColour == inactiveCardColor) {
-        maleCardColour = activeCardColor;
-        femaleCardColour = inactiveCardColor;
-      } else {
-        maleCardColour = inactiveCardColor;
-      }
-    }
-
-    //female card pressed
-    if (gender == 2) {
-      if (femaleCardColour == inactiveCardColor) {
-        femaleCardColour = activeCardColor;
-        maleCardColour = inactiveCardColor;
-      } else {
-        femaleCardColour = inactiveCardColor;
-      }
-    }
-  }
+//  void updateColour(Gender selectedGender) {
+//    //male card pressed
+//    if (selectedGender == Gender.male) {
+//      if (maleCardColour == inactiveCardColor) {
+//        maleCardColour = activeCardColor;
+//        femaleCardColour = inactiveCardColor;
+//      } else {
+//        maleCardColour = inactiveCardColor;
+//      }
+//    }
+//
+//    //female card pressed
+//    if (selectedGender == Gender.female) {
+//      if (femaleCardColour == inactiveCardColor) {
+//        femaleCardColour = activeCardColor;
+//        maleCardColour = inactiveCardColor;
+//      } else {
+//        femaleCardColour = inactiveCardColor;
+//      }
+//    }
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,35 +56,34 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: <Widget>[
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
-                      print('mail clicked');
+                  child: ReusableCard(
+                    onPress: () {
                       setState(() {
-                        updateColour(1);
+                        selectedGender = Gender.male;
                       });
                     },
-                    child: ReusableCard(
-                      colour: maleCardColour,
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.mars,
-                        label: 'MALE',
-                      ),
+                    colour: selectedGender == Gender.male
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.mars,
+                      label: 'MALE',
                     ),
                   ),
                 ),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () {
+                  child: ReusableCard(
+                    onPress: () {
                       setState(() {
-                        this.updateColour(2);
+                        selectedGender = Gender.female;
                       });
                     },
-                    child: ReusableCard(
-                      colour: femaleCardColour,
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.venus,
-                        label: 'FEMALE',
-                      ),
+                    colour: selectedGender == Gender.female
+                        ? activeCardColor
+                        : inactiveCardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.venus,
+                      label: 'FEMALE',
                     ),
                   ),
                 ),

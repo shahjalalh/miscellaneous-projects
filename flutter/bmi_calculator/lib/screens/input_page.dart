@@ -1,9 +1,13 @@
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/material.dart';
-import 'reusable_card.dart';
-import 'icon_content.dart';
-import 'constants.dart';
+import '../components/bottom_button.dart';
+import '../components/round_icon_button.dart';
+import 'results_page.dart';
+import '../components/reusable_card.dart';
+import '../components/icon_content.dart';
+import '../constants.dart';
+import '../calculator_brain.dart';
 
 enum Gender { male, female }
 
@@ -13,36 +17,10 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
-//  Color maleCardColour = inactiveCardColor;
-//  Color femaleCardColour = inactiveCardColor;
-
   Gender selectedGender = Gender.male;
   int height = 180;
   int weight = 60;
   int age = 20;
-
-  // 1 = male, 2 = female
-//  void updateColour(Gender selectedGender) {
-//    //male card pressed
-//    if (selectedGender == Gender.male) {
-//      if (maleCardColour == inactiveCardColor) {
-//        maleCardColour = activeCardColor;
-//        femaleCardColour = inactiveCardColor;
-//      } else {
-//        maleCardColour = inactiveCardColor;
-//      }
-//    }
-//
-//    //female card pressed
-//    if (selectedGender == Gender.female) {
-//      if (femaleCardColour == inactiveCardColor) {
-//        femaleCardColour = activeCardColor;
-//        maleCardColour = inactiveCardColor;
-//      } else {
-//        femaleCardColour = inactiveCardColor;
-//      }
-//    }
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -231,36 +209,24 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 10.0),
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          BottomButton(
+            onTap: () {
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => ResultsPage(
+                          bmiResult: calc.calculateBMI(),
+                          resultText: calc.getResult(),
+                          interpretation: calc.getInterpretation(),
+                        )),
+              );
+            },
+            buttonTitle: 'CALCULATE',
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({@required this.icon, @required this.onPressed});
-
-  final IconData icon;
-  final Function onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      elevation: 0.0,
-      child: Icon(icon),
-      onPressed: onPressed,
-      constraints: BoxConstraints.tightFor(
-        width: 56,
-        height: 56,
-      ),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
